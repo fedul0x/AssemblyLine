@@ -1,6 +1,10 @@
 package ru.fedul0x.assemblyline.filter;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ru.fedul0x.assemblyline.filter.target.FilterTarget;
 import ru.fedul0x.assemblyline.filter.component.FilterViewComponent;
 import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
@@ -14,15 +18,31 @@ import ru.fedul0x.assemblyline.reflection.ReflectionUtils;
  *
  * @author Ivashin Alexey
  */
-//TODO Входные и выходные данные на основе делегирования
+//TODO Входные и выходные данные на основе делегирования???
 public abstract class Filter<initType extends FilterTarget, filtratedType extends FilterTarget> {
 
     public Filter() {
+        try {
+            filtratedData = (filtratedType) getFiltratedType().newInstance();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 //TODO Убрать исключения
+    //Что значит final метод?
     public Filter(initType initData) throws InvalidFilterTargetTypeException, NullFilterException {
+        try {
+            filtratedData = (filtratedType) getFiltratedType().newInstance();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setInitData(initData);
+        
     }
     /*
      * Ссылка на исходные данные

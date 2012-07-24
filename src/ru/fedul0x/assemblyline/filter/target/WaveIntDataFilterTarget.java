@@ -10,6 +10,9 @@ import ru.fedul0x.assemblyline.filter.target.FilterTarget;
  */
 public class WaveIntDataFilterTarget extends FilterTarget {
 
+    public WaveIntDataFilterTarget() {
+    }
+
     /*
      * Формат аудио
      */

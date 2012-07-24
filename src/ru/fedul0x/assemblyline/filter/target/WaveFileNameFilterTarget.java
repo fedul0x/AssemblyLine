@@ -12,6 +12,9 @@ public class WaveFileNameFilterTarget extends FilterTarget {
 
     public String fileName;
 
+    public WaveFileNameFilterTarget() {
+    }
+
     public WaveFileNameFilterTarget(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if ((file.isFile()) && (file.exists())) {

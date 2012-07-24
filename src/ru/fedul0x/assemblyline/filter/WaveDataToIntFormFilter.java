@@ -24,7 +24,7 @@ public class WaveDataToIntFormFilter extends Filter<WaveDataFilterTarget, WaveIn
     @Override
     public boolean filtrate() {
         byte[] data = initData.data;
-        filtratedData = new WaveIntDataFilterTarget();
+//        filtratedData = new WaveIntDataFilterTarget();
         int[] intData = filtratedData.data;
         if (data != null) {
             if (initData.audioFormat.getSampleSizeInBits() == 16) {

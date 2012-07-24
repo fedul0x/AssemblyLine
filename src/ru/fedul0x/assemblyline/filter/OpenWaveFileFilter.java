@@ -18,6 +18,11 @@ import ru.fedul0x.assemblyline.filter.target.WaveDataFilterTarget;
  */
 public class OpenWaveFileFilter extends Filter<WaveFileNameFilterTarget, WaveDataFilterTarget> {
 
+    public OpenWaveFileFilter() {
+        super();
+    }
+    
+
     public OpenWaveFileFilter(WaveFileNameFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
         super(initData);
     }
@@ -27,7 +32,7 @@ public class OpenWaveFileFilter extends Filter<WaveFileNameFilterTarget, WaveDat
     public boolean filtrate() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         File file = new File(initData.fileName);
         AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-        filtratedData = new WaveDataFilterTarget();
+//        filtratedData = new WaveDataFilterTarget();
         WaveDataFilterTarget fd = filtratedData;
         filtratedData.audioFormat = ais.getFormat();
         // количество кадров в файле
