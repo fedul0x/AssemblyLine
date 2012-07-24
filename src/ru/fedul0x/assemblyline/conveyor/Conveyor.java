@@ -3,7 +3,7 @@ package ru.fedul0x.assemblyline.conveyor;
 import java.util.LinkedList;
 import java.util.List;
 import ru.fedul0x.assemblyline.filter.Filter;
-import ru.fedul0x.assemblyline.filter.FilterTarget;
+import ru.fedul0x.assemblyline.filter.target.FilterTarget;
 import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
 import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
 

@@ -1,4 +1,4 @@
-package ru.fedul0x.assemblyline.filter;
+package ru.fedul0x.assemblyline.filter.target;
 
 /**
  * Abstract class for representarion result of filter work
