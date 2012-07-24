@@ -19,11 +19,11 @@ public abstract class Filter<initType extends FilterTarget, filtrateType extends
      * Ссылка на исходные данные
      */
 
-    private initType initData;
+    protected initType initData;
     /*
      * Ссылка на результат
      */
-    private filtrateType filtratedData;
+    protected filtrateType filtratedData;
     
     /*
      * Компоненты для отображения результатов работы фильтра
@@ -56,5 +56,5 @@ public abstract class Filter<initType extends FilterTarget, filtrateType extends
         return filtratedData;
     }
 
-    public abstract boolean filtrate();
+    public abstract boolean filtrate() throws Exception;
 }

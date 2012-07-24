@@ -2,6 +2,8 @@ package ru.fedul0x.assemblyline.conveyor;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ru.fedul0x.assemblyline.filter.Filter;
 import ru.fedul0x.assemblyline.filter.target.FilterTarget;
 import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
@@ -15,6 +17,7 @@ import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
  *
  * @author Ivashin Alexey
  */
+//TODO Добавить разветвление и объединение потоков фильтров (конвеер конвееров, те (-----([=====])----)) , где круглые скобки - отдельные фильтры
 public class Conveyor {
     /*
      * Список для хранения всех фильтрво конвеера
@@ -97,11 +100,16 @@ public class Conveyor {
         FilterTarget buf = initData;
         for (int i = 0; i < filters.size(); i++) {
             filters.get(i).setInitData(buf);
-            if (filters.get(i).filtrate()) {
-                buf = filters.get(i).getFiltrateData();
-            } else {
-                //TODO Добавить выброс исключения для случая, когда один из конвееров отработал с ошибкой
-                break;
+            try {
+                if (filters.get(i).filtrate()) {
+                    buf = filters.get(i).getFiltrateData();
+                } else {
+                    //TODO Добавить выброс исключения для случая, когда один из конвееров отработал с ошибкой
+                    break;
+                }
+            } catch (Exception ex) {
+                //TODO Изменить реакцию на исключительную ситуацию
+                Logger.getLogger(Conveyor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return filters.get(filters.size() - 1).getFiltrateData();
