@@ -19,9 +19,10 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, InvalidFilterTargetTypeException, NullFilterException {
         Conveyor conveyor = new Conveyor();
-        WaveFileNameFilterTarget ft = new WaveFileNameFilterTarget("/home/fedul0x/NetBeansProjects/1-welcome.wav");
+        WaveFileNameFilterTarget ft = new WaveFileNameFilterTarget("/home/fedul0x/NetBeansProjects/newmix.wav");
         OpenWaveFileFilter openFilter = new OpenWaveFileFilter(ft);
         WaveDataToIntFormFilter waveToIntFilter = new WaveDataToIntFormFilter();
         conveyor.addFilter(openFilter).addFilter(waveToIntFilter);
+        conveyor.start();
     }
 }

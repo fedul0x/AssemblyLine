@@ -59,10 +59,13 @@ public abstract class Filter<initType extends FilterTarget, filtratedType extend
         this.initData = (initType) initData;
     }
 
+    public FilterTarget getInitData() {
+        return initData;
+    }
+
     public FilterTarget getFiltrateData() {
         return filtratedData;
     }
 
     public abstract boolean filtrate() throws Exception;
-
 }

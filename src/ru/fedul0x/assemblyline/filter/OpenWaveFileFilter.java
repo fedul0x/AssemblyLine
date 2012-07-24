@@ -27,8 +27,9 @@ public class OpenWaveFileFilter extends Filter<WaveFileNameFilterTarget, WaveDat
     public boolean filtrate() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         File file = new File(initData.fileName);
         AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+        filtratedData = new WaveDataFilterTarget();
         WaveDataFilterTarget fd = filtratedData;
-        fd.audioFormat = ais.getFormat();
+        filtratedData.audioFormat = ais.getFormat();
         // количество кадров в файле
         fd.framesCount = ais.getFrameLength();
         // размер сэмпла в байтах

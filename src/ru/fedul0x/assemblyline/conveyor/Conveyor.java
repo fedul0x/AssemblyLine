@@ -93,7 +93,37 @@ public class Conveyor {
     public void removeFilter(int position) {
         throw new UnsupportedOperationException("Not yet implement");
     }
-
+    /*
+     * Зупускает конвейер без исходных данных для первого фильтра
+     */
+//TODO Добавить проверку первого фильтра на наличие исходных данных
+    
+    public FilterTarget start() throws InvalidFilterTargetTypeException, NullFilterException {
+        if (filters.isEmpty()) {
+            return null;
+        }
+        
+        FilterTarget buf = filters.get(0).getInitData();
+        for (int i = 0; i < filters.size(); i++) {
+            filters.get(i).setInitData(buf);
+            try {
+                if (filters.get(i).filtrate()) {
+                    buf = filters.get(i).getFiltrateData();
+                } else {
+                    //TODO Добавить выброс исключения для случая, когда один из конвееров отработал с ошибкой
+                    break;
+                }
+            } catch (Exception ex) {
+                //TODO Изменить реакцию на исключительную ситуацию
+                Logger.getLogger(Conveyor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return filters.get(filters.size() - 1).getFiltrateData();
+    } 
+    
+    /*
+     * Зупускает конвейер с исходными данными для первого фильтра
+     */
     public FilterTarget start(FilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
         if (filters.isEmpty()) {
             return initData;
