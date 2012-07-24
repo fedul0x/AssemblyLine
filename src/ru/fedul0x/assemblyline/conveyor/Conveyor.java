@@ -35,7 +35,7 @@ public class Conveyor {
      * Добавление фильтра в конец конвеера
      */
 
-    Conveyor addFilter(Filter filter) throws NullFilterException, InvalidFilterTargetTypeException {
+    public Conveyor addFilter(Filter filter) throws NullFilterException, InvalidFilterTargetTypeException {
         if (filter == null) {
             throw new NullFilterException("Недопустимо использование значения null");
         }
@@ -55,7 +55,7 @@ public class Conveyor {
      * Добавление фильтра на позицию {@code position} в конвеер
      */
 
-    Conveyor addFilter(Filter filter, int position) throws NullFilterException, InvalidFilterTargetTypeException, UnsupportedOperationException {
+    public Conveyor addFilter(Filter filter, int position) throws NullFilterException, InvalidFilterTargetTypeException, UnsupportedOperationException {
         if (position >= 0) {
             throw new UnsupportedOperationException("Not yet implement");
         }

@@ -1,4 +1,4 @@
-package ru.fedul0x.assemblyline.filter;
+package ru.fedul0x.assemblyline.filter.target;
 
 import javax.sound.sampled.AudioFormat;
 import ru.fedul0x.assemblyline.filter.target.FilterTarget;
@@ -8,7 +8,7 @@ import ru.fedul0x.assemblyline.filter.target.FilterTarget;
  *
  * @author Ivashin Alexey
  */
-class WaveIntDataFilterTarget extends FilterTarget {
+public class WaveIntDataFilterTarget extends FilterTarget {
 
     /*
      * Формат аудио

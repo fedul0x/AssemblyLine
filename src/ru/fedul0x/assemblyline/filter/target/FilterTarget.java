@@ -16,7 +16,6 @@ public abstract class FilterTarget {
         this.finished = false;
     }
     
-
     public Boolean getFinished() {
         return finished;
     }

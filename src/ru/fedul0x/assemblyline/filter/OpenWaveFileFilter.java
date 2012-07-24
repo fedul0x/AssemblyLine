@@ -3,10 +3,11 @@ package ru.fedul0x.assemblyline.filter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
+import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
 import ru.fedul0x.assemblyline.filter.target.WaveFileNameFilterTarget;
 import ru.fedul0x.assemblyline.filter.target.WaveDataFilterTarget;
 
@@ -16,6 +17,11 @@ import ru.fedul0x.assemblyline.filter.target.WaveDataFilterTarget;
  * @author eqlbin, Ivashin Alexey
  */
 public class OpenWaveFileFilter extends Filter<WaveFileNameFilterTarget, WaveDataFilterTarget> {
+
+    public OpenWaveFileFilter(WaveFileNameFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
+        super(initData);
+    }
+    
 
     @Override
     public boolean filtrate() throws FileNotFoundException, UnsupportedAudioFileException, IOException {

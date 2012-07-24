@@ -15,16 +15,18 @@ import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
 //TODO Передавать тип исходных и фильтрованных данных через джинерик???
 //TODO Входные и выходные данные на основе делегирования
 public abstract class Filter<initType extends FilterTarget, filtrateType extends FilterTarget> {
+
+    public Filter(initType initData) throws InvalidFilterTargetTypeException, NullFilterException {
+        setInitData(initData);
+    }
     /*
      * Ссылка на исходные данные
      */
-
     protected initType initData;
     /*
      * Ссылка на результат
      */
     protected filtrateType filtratedData;
-    
     /*
      * Компоненты для отображения результатов работы фильтра
      */

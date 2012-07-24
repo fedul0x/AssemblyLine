@@ -1,6 +1,9 @@
 package ru.fedul0x.assemblyline.filter;
 
+import ru.fedul0x.assemblyline.filter.target.WaveIntDataFilterTarget;
 import java.util.Arrays;
+import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
+import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
 import ru.fedul0x.assemblyline.filter.target.WaveDataFilterTarget;
 
 /**
@@ -10,6 +13,11 @@ import ru.fedul0x.assemblyline.filter.target.WaveDataFilterTarget;
  */
 public class WaveDataToIntFormFilter extends Filter<WaveDataFilterTarget, WaveIntDataFilterTarget> {
 
+    public WaveDataToIntFormFilter(WaveDataFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
+        super(initData);
+    }
+
+    
     @Override
     public boolean filtrate() {
         byte[] data = initData.data;
