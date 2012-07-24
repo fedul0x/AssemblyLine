@@ -16,6 +16,10 @@ import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
 //TODO Входные и выходные данные на основе делегирования
 public abstract class Filter<initType extends FilterTarget, filtrateType extends FilterTarget> {
 
+    public Filter() {
+    }
+
+//TODO Убрать исключения
     public Filter(initType initData) throws InvalidFilterTargetTypeException, NullFilterException {
         setInitData(initData);
     }

@@ -13,11 +13,14 @@ import ru.fedul0x.assemblyline.filter.target.WaveDataFilterTarget;
  */
 public class WaveDataToIntFormFilter extends Filter<WaveDataFilterTarget, WaveIntDataFilterTarget> {
 
+    public WaveDataToIntFormFilter() {
+        super();
+        
+    }
     public WaveDataToIntFormFilter(WaveDataFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
         super(initData);
     }
 
-    
     @Override
     public boolean filtrate() {
         byte[] data = initData.data;
