@@ -1,9 +1,11 @@
 package ru.fedul0x.assemblyline.filter;
 
+import java.lang.reflect.ParameterizedType;
 import ru.fedul0x.assemblyline.filter.target.FilterTarget;
 import ru.fedul0x.assemblyline.filter.component.FilterViewComponent;
 import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
 import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
+import ru.fedul0x.assemblyline.reflection.ReflectionUtils;
 
 /**
  * Filter for data processing
@@ -12,9 +14,8 @@ import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
  *
  * @author Ivashin Alexey
  */
-//TODO Передавать тип исходных и фильтрованных данных через джинерик???
 //TODO Входные и выходные данные на основе делегирования
-public abstract class Filter<initType extends FilterTarget, filtrateType extends FilterTarget> {
+public abstract class Filter<initType extends FilterTarget, filtratedType extends FilterTarget> {
 
     public Filter() {
     }
@@ -26,11 +27,11 @@ public abstract class Filter<initType extends FilterTarget, filtrateType extends
     /*
      * Ссылка на исходные данные
      */
-    protected initType initData;
+    protected initType initData = null;
     /*
      * Ссылка на результат
      */
-    protected filtrateType filtratedData;
+    protected filtratedType filtratedData = null;
     /*
      * Компоненты для отображения результатов работы фильтра
      */
@@ -39,12 +40,12 @@ public abstract class Filter<initType extends FilterTarget, filtrateType extends
     public void Filter() {
     }
 
-    public Class getFiltratedType() {
-        return filtratedData.getClass();
+    public Class getInitType() {
+        return ReflectionUtils.getGenericParameterClass(this.getClass(), 0);
     }
 
-    public Class getInitType() {
-        return initData.getClass();
+    public Class getFiltratedType() {
+        return ReflectionUtils.getGenericParameterClass(this.getClass(), 1);
     }
 
     public void setInitData(FilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
@@ -63,4 +64,5 @@ public abstract class Filter<initType extends FilterTarget, filtrateType extends
     }
 
     public abstract boolean filtrate() throws Exception;
+
 }

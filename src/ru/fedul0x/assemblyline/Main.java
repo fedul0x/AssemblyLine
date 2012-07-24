@@ -13,14 +13,15 @@ import ru.fedul0x.assemblyline.filter.target.WaveFileNameFilterTarget;
  * @author Ivashin Alexey
  */
 public class Main {
+    
+    public Main() {
+    }
 
-    Conveyor conveyor = new Conveyor();
-
-    public Main() throws FileNotFoundException, InvalidFilterTargetTypeException, NullFilterException {
+    public static void main(String[] args) throws FileNotFoundException, InvalidFilterTargetTypeException, NullFilterException {
+        Conveyor conveyor = new Conveyor();
         WaveFileNameFilterTarget ft = new WaveFileNameFilterTarget("/home/fedul0x/NetBeansProjects/1-welcome.wav");
         OpenWaveFileFilter openFilter = new OpenWaveFileFilter(ft);
-        WaveDataToIntFormFilter toIntFilter = new WaveDataToIntFormFilter();
-        conveyor.addFilter(openFilter);
-        conveyor.addFilter(toIntFilter);
+        WaveDataToIntFormFilter waveToIntFilter = new WaveDataToIntFormFilter();
+        conveyor.addFilter(openFilter).addFilter(waveToIntFilter);
     }
 }

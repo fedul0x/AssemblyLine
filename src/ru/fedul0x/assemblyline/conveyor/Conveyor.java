@@ -41,7 +41,8 @@ public class Conveyor {
         }
         if (last == null) {
             filters.add(filter);
-
+            last = filter;
+            return this;
         }
         if (last.getFiltratedType() == filter.getInitType()) {
             filters.add(filter);
