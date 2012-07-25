@@ -15,8 +15,9 @@ public class WaveDataToIntFormFilter extends Filter<WaveDataFilterTarget, WaveIn
 
     public WaveDataToIntFormFilter() {
         super();
-        
+
     }
+
     public WaveDataToIntFormFilter(WaveDataFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
         super(initData);
     }
@@ -24,13 +25,12 @@ public class WaveDataToIntFormFilter extends Filter<WaveDataFilterTarget, WaveIn
     @Override
     public boolean filtrate() {
         byte[] data = initData.data;
-//        filtratedData = new WaveIntDataFilterTarget();
         int[] intData = filtratedData.data;
         if (data != null) {
             if (initData.audioFormat.getSampleSizeInBits() == 16) {
-                long nlengthInSamples= data.length / 2;
+                long nlengthInSamples = data.length / 2;
                 filtratedData.dataLength = nlengthInSamples;
-                
+
                 intData = new int[(int) nlengthInSamples];
                 if (initData.audioFormat.isBigEndian()) {
                     for (int i = 0; i < nlengthInSamples; i++) {

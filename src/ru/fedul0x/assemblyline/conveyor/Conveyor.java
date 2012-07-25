@@ -17,10 +17,10 @@ import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
  *
  * @author Ivashin Alexey
  */
-//TODO Добавить разветвление и объединение потоков фильтров (конвеер конвееров, те (-----([=====])----)) , где круглые скобки - отдельные фильтры
+//TODO Добавить разветвление и объединение потоков фильтров (конвеер конвееров, те (-----([=====])----)) , где круглые скобки - отдельные конвейеры фильтры
 public class Conveyor {
     /*
-     * Список для хранения всех фильтрво конвеера
+     * Список для хранения всех фильтров конвейера
      */
 
     private List<Filter> filters = new LinkedList<>();
@@ -52,7 +52,7 @@ public class Conveyor {
         last = filter;
         return this;
     }
-    /*
+    /**
      * Добавление фильтра на позицию {@code position} в конвеер
      */
 
@@ -122,7 +122,7 @@ public class Conveyor {
     } 
     
     /*
-     * Зупускает конвейер с исходными данными для первого фильтра
+     * Зупускает конвейер с исходными данными для первого фильтра в конвейере
      */
     public FilterTarget start(FilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
         if (filters.isEmpty()) {

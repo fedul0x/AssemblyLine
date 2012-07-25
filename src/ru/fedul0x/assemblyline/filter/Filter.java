@@ -53,7 +53,7 @@ public abstract class Filter<initType extends FilterTarget, filtratedType extend
      */
     protected filtratedType filtratedData = null;
     /*
-     * Компоненты для отображения результатов работы фильтра
+     * Компоненты для отображения результатов работы фильтра???
      */
     private FilterViewComponent view;
 
