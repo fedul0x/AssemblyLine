@@ -1,15 +1,15 @@
-package ru.fedul0x.assemblyline.filter;
+package ru.fedul0x.wavepredict.assemblyline.filter;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ru.fedul0x.assemblyline.filter.target.FilterTarget;
-import ru.fedul0x.assemblyline.filter.component.FilterViewComponent;
-import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
-import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
-import ru.fedul0x.assemblyline.reflection.ReflectionUtils;
+import ru.fedul0x.wavepredict.assemblyline.filter.target.FilterTarget;
+import ru.fedul0x.wavepredict.assemblyline.filter.component.FilterViewComponent;
+import ru.fedul0x.wavepredict.assemblyline.filter.exception.InvalidFilterTargetTypeException;
+import ru.fedul0x.wavepredict.assemblyline.filter.exception.NullFilterException;
+import ru.fedul0x.wavepredict.common.reflection.ReflectionUtils;
 
 /**
  * Filter for data processing

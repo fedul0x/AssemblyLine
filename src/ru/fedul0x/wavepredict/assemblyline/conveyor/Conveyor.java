@@ -1,13 +1,13 @@
-package ru.fedul0x.assemblyline.conveyor;
+package ru.fedul0x.wavepredict.assemblyline.conveyor;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.fedul0x.assemblyline.filter.Filter;
-import ru.fedul0x.assemblyline.filter.target.FilterTarget;
-import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
-import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
+import ru.fedul0x.wavepredict.assemblyline.filter.target.FilterTarget;
+import ru.fedul0x.wavepredict.assemblyline.filter.exception.InvalidFilterTargetTypeException;
+import ru.fedul0x.wavepredict.assemblyline.filter.exception.NullFilterException;
 
 /**
  * Conveyor for filter grouping

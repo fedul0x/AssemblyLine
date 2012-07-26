@@ -4,6 +4,7 @@
  */
 package ru.fedul0x.assemblyline.conveyor;
 
+import ru.fedul0x.wavepredict.assemblyline.conveyor.Conveyor;
 import org.junit.*;
 import static org.junit.Assert.*;
 import ru.fedul0x.assemblyline.filter.Filter;

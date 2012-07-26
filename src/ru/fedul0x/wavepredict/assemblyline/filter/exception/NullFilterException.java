@@ -1,4 +1,4 @@
-package ru.fedul0x.assemblyline.filter.exception;
+package ru.fedul0x.wavepredict.assemblyline.filter.exception;
 
 /**
  * Exception throw when invoke method {@code start()} have a null pointer in {@code sourceData} field

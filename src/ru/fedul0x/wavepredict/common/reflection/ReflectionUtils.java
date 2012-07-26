@@ -1,4 +1,4 @@
-package ru.fedul0x.assemblyline.reflection;
+package ru.fedul0x.wavepredict.common.reflection;
 
 import java.lang.reflect.GenericDeclaration;
 import java.lang.reflect.ParameterizedType;

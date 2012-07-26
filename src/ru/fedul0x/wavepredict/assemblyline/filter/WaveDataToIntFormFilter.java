@@ -1,24 +1,23 @@
-package ru.fedul0x.assemblyline.filter;
+package ru.fedul0x.wavepredict.assemblyline.filter;
 
-import ru.fedul0x.assemblyline.filter.target.WaveIntDataFilterTarget;
-import java.util.Arrays;
-import ru.fedul0x.assemblyline.filter.exception.InvalidFilterTargetTypeException;
-import ru.fedul0x.assemblyline.filter.exception.NullFilterException;
-import ru.fedul0x.assemblyline.filter.target.WaveDataFilterTarget;
+import ru.fedul0x.wavepredict.assemblyline.filter.target.IntDataFilterTarget;
+import ru.fedul0x.wavepredict.assemblyline.filter.exception.InvalidFilterTargetTypeException;
+import ru.fedul0x.wavepredict.assemblyline.filter.exception.NullFilterException;
+import ru.fedul0x.wavepredict.assemblyline.filter.target.DataFilterTarget;
 
 /**
  * Фильтр для преобразования {@code WaveData} в целочисленную форму
  *
  * @author Ivashin Alexey
  */
-public class WaveDataToIntFormFilter extends Filter<WaveDataFilterTarget, WaveIntDataFilterTarget> {
+public class WaveDataToIntFormFilter extends Filter<DataFilterTarget, IntDataFilterTarget> {
 
     public WaveDataToIntFormFilter() {
         super();
 
     }
 
-    public WaveDataToIntFormFilter(WaveDataFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
+    public WaveDataToIntFormFilter(DataFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
         super(initData);
     }
 

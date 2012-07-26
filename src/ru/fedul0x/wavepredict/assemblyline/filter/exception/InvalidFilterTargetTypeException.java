@@ -1,4 +1,4 @@
-package ru.fedul0x.assemblyline.filter.exception;
+package ru.fedul0x.wavepredict.assemblyline.filter.exception;
 
 /**
  *

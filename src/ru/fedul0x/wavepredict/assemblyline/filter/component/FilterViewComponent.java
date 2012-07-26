@@ -1,4 +1,4 @@
-package ru.fedul0x.assemblyline.filter.component;
+package ru.fedul0x.wavepredict.assemblyline.filter.component;
 
 /**
  * Visual component for reperesentation filter work
