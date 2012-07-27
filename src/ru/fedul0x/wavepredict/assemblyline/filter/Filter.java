@@ -1,8 +1,5 @@
 package ru.fedul0x.wavepredict.assemblyline.filter;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.FilterTarget;
@@ -19,11 +16,11 @@ import ru.fedul0x.wavepredict.common.reflection.ReflectionUtils;
  * @author Ivashin Alexey
  */
 //TODO Входные и выходные данные на основе делегирования???
-public abstract class Filter<initType extends FilterTarget, filtratedType extends FilterTarget> {
+public abstract class Filter<InitType extends FilterTarget, FiltratedType extends FilterTarget> {
 
     public Filter() {
         try {
-            filtratedData = (filtratedType) getFiltratedType().newInstance();
+            filtratedData = (FiltratedType) getFiltratedType().newInstance();
         } catch (InstantiationException ex) {
             Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -33,25 +30,25 @@ public abstract class Filter<initType extends FilterTarget, filtratedType extend
 
 //TODO Убрать исключения
     //Что значит final метод?
-    public Filter(initType initData) throws InvalidFilterTargetTypeException, NullFilterException {
+    public Filter(InitType initData) throws InvalidFilterTargetTypeException, NullFilterException {
         try {
-            filtratedData = (filtratedType) getFiltratedType().newInstance();
+            filtratedData = (FiltratedType) getFiltratedType().newInstance();
         } catch (InstantiationException ex) {
             Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
         }
         setInitData(initData);
-        
+
     }
     /*
      * Ссылка на исходные данные
      */
-    protected initType initData = null;
+    protected InitType initType = null;
     /*
      * Ссылка на результат
      */
-    protected filtratedType filtratedData = null;
+    protected FiltratedType filtratedData = null;
     /*
      * Компоненты для отображения результатов работы фильтра???
      */
@@ -73,19 +70,31 @@ public abstract class Filter<initType extends FilterTarget, filtratedType extend
             throw new NullFilterException("Значение null не может быть использовано в качестве исходных данных");
         }
         //TODO Добавить проверку на корректность типа исходных данных
-//        if (initData instanceof initType) {
+//        if (wdo instanceof initType) {
 //            throw new InvalidFilterTargetTypeException("Невеный тип исходных данных");
 //        }
-        this.initData = (initType) initData;
+        this.initType = (InitType) initData;
     }
 
     public FilterTarget getInitData() {
-        return initData;
+        return initType;
     }
 
     public FilterTarget getFiltrateData() {
         return filtratedData;
     }
 
-    public abstract boolean filtrate() throws Exception;
+    public final boolean process() throws Exception {
+        int n = initType.getStorageLength();
+        for (int i = 0; i < n; i++) {
+            filtrate(initType.getStorage(i), filtratedData.getStorage(i));
+        }
+        filtrateAll(initType, filtratedData);
+        return true;
+    }
+
+    //TODO Как бы добавить сюда проверку типа или приведение типа, т.к. в filtrate приведется приводить
+    protected abstract boolean filtrate(Object initStorage, Object filtratedStorage) throws Exception;
+
+    protected abstract boolean filtrateAll(InitType initData, FiltratedType filtratedData) throws Exception;
 }

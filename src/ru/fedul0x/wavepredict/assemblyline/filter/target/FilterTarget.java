@@ -68,6 +68,18 @@ public abstract class FilterTarget<DataStorage> {
             throw new IllegalArgumentException("Значение с указанным номером " + String.valueOf(pos) + " не существует");
         }
     }
+    public int getStorageLength() throws IllegalArgumentException {
+        return dataStorages.size();
+    }
+
+    /////////=================
+    public Boolean getFinished() {
+        return finished;
+    }
+
+    public void setFinished(Boolean finished) {
+        this.finished = finished;
+    }
 
     public DataStorage getCurrentStorage() {
         if (currentStorageNumber != -1) {
@@ -75,14 +87,6 @@ public abstract class FilterTarget<DataStorage> {
         } else {
             throw new IllegalArgumentException("Текущего хранилища не назначено");
         }
-    }
-
-    public Boolean getFinished() {
-        return finished;
-    }
-
-    public void setFinished(Boolean finished) {
-        this.finished = finished;
     }
 
     public void setCurrentStorageNumber(int pos) throws IllegalArgumentException {

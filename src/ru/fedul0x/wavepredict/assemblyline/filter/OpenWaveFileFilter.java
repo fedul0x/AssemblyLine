@@ -10,6 +10,7 @@ import ru.fedul0x.wavepredict.assemblyline.filter.exception.InvalidFilterTargetT
 import ru.fedul0x.wavepredict.assemblyline.filter.exception.NullFilterException;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.FileNameFilterTarget;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.DataFilterTarget;
+import ru.fedul0x.wavepredict.common.WaveDataObject;
 
 /**
  * Фильтр для открытия wav-файла
@@ -26,23 +27,33 @@ public class OpenWaveFileFilter extends Filter<FileNameFilterTarget, DataFilterT
     public OpenWaveFileFilter(FileNameFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
         super(initData);
     }
-    
 
     @Override
-    public boolean filtrate() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        File file = new File(initData.fileName);
+    protected boolean filtrate(Object initStorage, Object filtratedStorage) throws UnsupportedAudioFileException, IOException{
+        String fileName = (String)initStorage;
+        WaveDataObject<Byte> wdo = (WaveDataObject<Byte>)filtratedStorage;
+        File file = new File(fileName);
         AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-//        filtratedData = new DataFilterTarget();
-        DataFilterTarget fd = filtratedData;
-        filtratedData.audioFormat = ais.getFormat();
+        wdo.audioFormat = ais.getFormat();
         // количество кадров в файле
-        fd.framesCount = ais.getFrameLength();
+        wdo.framesCount = ais.getFrameLength();
         // размер сэмпла в байтах
-        fd.sampleSize = fd.audioFormat.getSampleSizeInBits() / 8;
+        wdo.sampleSize = wdo.audioFormat.getSampleSizeInBits() / 8;
         // размер данных в байтах
-        fd.dataLength = fd.framesCount * fd.audioFormat.getSampleSizeInBits() * fd.audioFormat.getChannels() / 8;
-        fd.data = new byte[(int)fd.dataLength];
-        ais.read(filtratedData.data);
+        wdo.dataLength = wdo.framesCount * wdo.audioFormat.getSampleSizeInBits() * wdo.audioFormat.getChannels() / 8;
+        wdo.data = new Byte[(int)wdo.dataLength];
+        byte[] data0 = new byte[(int)wdo.dataLength];
+        ais.read(data0);
+        for (int i=0; i<(int)wdo.dataLength; i++)
+        {
+            wdo.data[i] = data0[i];
+        }
         return true;
     }
+
+    @Override
+    protected boolean filtrateAll(FileNameFilterTarget initData, DataFilterTarget filtratedData) throws Exception {
+        return true;
+    }
+
 }

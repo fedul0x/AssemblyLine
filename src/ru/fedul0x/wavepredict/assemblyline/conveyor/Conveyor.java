@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ru.fedul0x.assemblyline.filter.Filter;
+import ru.fedul0x.wavepredict.assemblyline.filter.Filter;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.FilterTarget;
 import ru.fedul0x.wavepredict.assemblyline.filter.exception.InvalidFilterTargetTypeException;
 import ru.fedul0x.wavepredict.assemblyline.filter.exception.NullFilterException;
@@ -107,7 +107,7 @@ public class Conveyor {
         for (int i = 0; i < filters.size(); i++) {
             filters.get(i).setInitData(buf);
             try {
-                if (filters.get(i).filtrate()) {
+                if (filters.get(i).process()) {
                     buf = filters.get(i).getFiltrateData();
                 } else {
                     //TODO Добавить выброс исключения для случая, когда один из конвееров отработал с ошибкой
@@ -132,7 +132,7 @@ public class Conveyor {
         for (int i = 0; i < filters.size(); i++) {
             filters.get(i).setInitData(buf);
             try {
-                if (filters.get(i).filtrate()) {
+                if (filters.get(i).process()) {
                     buf = filters.get(i).getFiltrateData();
                 } else {
                     //TODO Добавить выброс исключения для случая, когда один из конвееров отработал с ошибкой

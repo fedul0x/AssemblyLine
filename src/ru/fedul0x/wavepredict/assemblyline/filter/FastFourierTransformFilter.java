@@ -10,8 +10,12 @@ import ru.fedul0x.wavepredict.assemblyline.filter.target.IntDataFilterTarget;
 public class FastFourierTransformFilter extends Filter<IntDataFilterTarget, IntDataFilterTarget> {
 
     @Override
-    public boolean filtrate() throws Exception {
+    protected boolean filtrate(Object initStorage, Object filtratedStorage) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+    @Override
+    protected boolean filtrateAll(IntDataFilterTarget initData, IntDataFilterTarget filtratedData) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
