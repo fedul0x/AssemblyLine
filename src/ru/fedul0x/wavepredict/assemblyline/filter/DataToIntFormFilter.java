@@ -1,15 +1,11 @@
 package ru.fedul0x.wavepredict.assemblyline.filter;
 
-import java.io.File;
 import java.io.IOException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.IntDataFilterTarget;
 import ru.fedul0x.wavepredict.assemblyline.filter.exception.InvalidFilterTargetTypeException;
 import ru.fedul0x.wavepredict.assemblyline.filter.exception.NullFilterException;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.DataFilterTarget;
-import ru.fedul0x.wavepredict.assemblyline.filter.target.FileNameFilterTarget;
 import ru.fedul0x.wavepredict.common.WaveDataObject;
 
 /**
@@ -18,31 +14,27 @@ import ru.fedul0x.wavepredict.common.WaveDataObject;
  * @author Ivashin Alexey
  */
 public class DataToIntFormFilter extends Filter<DataFilterTarget, IntDataFilterTarget> {
-
+    
     public DataToIntFormFilter() {
         super();
-
+        
     }
-
+    
     public DataToIntFormFilter(DataFilterTarget initData) throws InvalidFilterTargetTypeException, NullFilterException {
         super(initData);
     }
-
-  
     
-    
-    
-      @Override
-    protected boolean filtrate(Object initStorage, Object filtratedStorage) throws UnsupportedAudioFileException, IOException{
-        WaveDataObject<Byte> wdo = (WaveDataObject<Byte>)initStorage;
-        WaveDataObject<Integer> wdoi = (WaveDataObject<Integer>)filtratedStorage;
+    @Override
+    protected boolean filtrate(Object initStorage, Object filtratedStorage) throws UnsupportedAudioFileException, IOException {
+        WaveDataObject<Byte> wdo = (WaveDataObject<Byte>) initStorage;
+        WaveDataObject<Integer> wdoi = (WaveDataObject<Integer>) filtratedStorage;
         Byte[] data = wdo.data;
         Integer[] intData = wdoi.data;
         if (data != null) {
             if (wdo.audioFormat.getSampleSizeInBits() == 16) {
                 long nlengthInSamples = data.length / 2;
                 wdoi.dataLength = nlengthInSamples;
-
+                
                 intData = new Integer[(int) nlengthInSamples];
                 if (wdo.audioFormat.isBigEndian()) {
                     for (int i = 0; i < nlengthInSamples; i++) {
@@ -73,10 +65,9 @@ public class DataToIntFormFilter extends Filter<DataFilterTarget, IntDataFilterT
         }
         return true;
     }
-
+    
     @Override
     protected boolean filtrateAll(DataFilterTarget initData, IntDataFilterTarget filtratedData) throws Exception {
         return true;
     }
-
 }

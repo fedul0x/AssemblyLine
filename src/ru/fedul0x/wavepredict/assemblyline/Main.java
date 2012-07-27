@@ -18,17 +18,13 @@ public class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException, InvalidFilterTargetTypeException, NullFilterException {
-        Conveyor conveyor1 = new Conveyor();
-        FileNameFilterTarget ft = new FileNameFilterTarget("/home/fedul0x/NetBeansProjects/Зайцева ИВ 8 кашель.wav");
+        Conveyor conveyor = new Conveyor();
+        FileNameFilterTarget ft = (FileNameFilterTarget) new FileNameFilterTarget().
+                addArgument("/home/fedul0x/NetBeansProjects/Зайцева ИВ 8 кашель.wav").
+                addArgument("/home/fedul0x/NetBeansProjects/newmix.wav");
         OpenWaveFileFilter openFilter = new OpenWaveFileFilter(ft);
         DataToIntFormFilter waveToIntFilter = new DataToIntFormFilter();
-        conveyor1.addFilter(openFilter).addFilter(waveToIntFilter);
-        conveyor1.start();
-        Conveyor conveyor2 = new Conveyor();
-        FileNameFilterTarget ft2 = new FileNameFilterTarget("/home/fedul0x/NetBeansProjects/newmix.wav");
-        OpenWaveFileFilter openFilter2 = new OpenWaveFileFilter(ft);
-        DataToIntFormFilter waveToIntFilter2 = new DataToIntFormFilter();
-        conveyor2.addFilter(openFilter2).addFilter(waveToIntFilter2);
-        conveyor2.start();
+        conveyor.addFilter(openFilter).addFilter(waveToIntFilter);
+        conveyor.start();
     }
 }

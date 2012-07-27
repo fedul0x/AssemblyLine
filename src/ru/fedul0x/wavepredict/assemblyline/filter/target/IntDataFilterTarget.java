@@ -14,6 +14,8 @@ public class IntDataFilterTarget extends FilterTarget<WaveDataObject<Integer>> {
     public IntDataFilterTarget() {
     }
 
+    
+    //НИже муть
    public AudioFormat getAudioFormat() {
         return getCurrentStorage().audioFormat;
     }

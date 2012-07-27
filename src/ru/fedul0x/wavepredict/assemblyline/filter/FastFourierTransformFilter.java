@@ -1,5 +1,6 @@
 package ru.fedul0x.wavepredict.assemblyline.filter;
 
+import ru.fedul0x.wavepredict.assemblyline.filter.target.FloatDataFilterTarget;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.IntDataFilterTarget;
 
 /**
@@ -7,7 +8,7 @@ import ru.fedul0x.wavepredict.assemblyline.filter.target.IntDataFilterTarget;
  *
  * @author Ivashin Alexey
  */
-public class FastFourierTransformFilter extends Filter<IntDataFilterTarget, IntDataFilterTarget> {
+public class FastFourierTransformFilter extends Filter<IntDataFilterTarget, FloatDataFilterTarget> {
 
     @Override
     protected boolean filtrate(Object initStorage, Object filtratedStorage) throws Exception {
@@ -15,7 +16,7 @@ public class FastFourierTransformFilter extends Filter<IntDataFilterTarget, IntD
     }
 
     @Override
-    protected boolean filtrateAll(IntDataFilterTarget initData, IntDataFilterTarget filtratedData) throws Exception {
+    protected boolean filtrateAll(IntDataFilterTarget initData, FloatDataFilterTarget filtratedData) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

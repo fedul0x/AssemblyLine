@@ -12,7 +12,7 @@ public class DataFilterTarget extends FilterTarget<WaveDataObject<Byte>> {
 
     public DataFilterTarget() {
     }
-
+//НИже муть
     public AudioFormat getAudioFormat() {
         return getCurrentStorage().audioFormat;
     }
