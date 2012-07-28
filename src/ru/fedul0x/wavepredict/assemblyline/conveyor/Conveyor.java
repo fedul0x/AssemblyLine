@@ -23,11 +23,11 @@ public class Conveyor {
      * Список для хранения всех фильтров конвейера
      */
 
-    private List<Filter> filters = new LinkedList<>();
+    public List<Filter> filters = new LinkedList<>();
     /*
      * Последний элемент списка, для более эффективного добавления фильтров
      */
-    private Filter last = null;
+    public Filter last = null;
 
     public Conveyor() {
     }
@@ -52,10 +52,10 @@ public class Conveyor {
         last = filter;
         return this;
     }
+
     /**
      * Добавление фильтра на позицию {@code position} в конвеер
      */
-
     public Conveyor addFilter(Filter filter, int position) throws NullFilterException, InvalidFilterTargetTypeException, UnsupportedOperationException {
         if (position >= 0) {
             throw new UnsupportedOperationException("Not yet implement");
@@ -97,12 +97,12 @@ public class Conveyor {
      * Зупускает конвейер без исходных данных для первого фильтра
      */
 //TODO Добавить проверку первого фильтра на наличие исходных данных
-    
+
     public FilterTarget start() throws InvalidFilterTargetTypeException, NullFilterException {
         if (filters.isEmpty()) {
             return null;
         }
-        
+
         FilterTarget buf = filters.get(0).getInitData();
         for (int i = 0; i < filters.size(); i++) {
             filters.get(i).setInitData(buf);
@@ -119,8 +119,8 @@ public class Conveyor {
             }
         }
         return filters.get(filters.size() - 1).getFiltrateData();
-    } 
-    
+    }
+
     /*
      * Зупускает конвейер с исходными данными для первого фильтра в конвейере
      */

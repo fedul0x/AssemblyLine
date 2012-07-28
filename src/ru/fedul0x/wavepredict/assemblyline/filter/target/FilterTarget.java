@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import ru.fedul0x.wavepredict.common.reflection.ReflectionUtils;
 
 /**
  * Abstract class for representarion result of filter work
@@ -68,11 +69,14 @@ public abstract class FilterTarget<DataStorage> {
             throw new IllegalArgumentException("Значение с указанным номером " + String.valueOf(pos) + " не существует");
         }
     }
+
     public int getStorageLength() throws IllegalArgumentException {
         return dataStorages.size();
     }
 
-    /////////=================
+    public abstract Class getStorageType();
+
+    /////////=================bull shit
     public Boolean getFinished() {
         return finished;
     }

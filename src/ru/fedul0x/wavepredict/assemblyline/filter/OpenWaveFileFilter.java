@@ -11,6 +11,7 @@ import ru.fedul0x.wavepredict.assemblyline.filter.exception.NullFilterException;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.FileNameFilterTarget;
 import ru.fedul0x.wavepredict.assemblyline.filter.target.DataFilterTarget;
 import ru.fedul0x.wavepredict.common.WaveDataObject;
+import ru.fedul0x.wavepredict.common.reflection.ReflectionUtils;
 
 /**
  * Фильтр для открытия wav-файла
@@ -55,5 +56,7 @@ public class OpenWaveFileFilter extends Filter<FileNameFilterTarget, DataFilterT
     protected boolean filtrateAll(FileNameFilterTarget initData, DataFilterTarget filtratedData) throws Exception {
         return true;
     }
+    
+
 
 }

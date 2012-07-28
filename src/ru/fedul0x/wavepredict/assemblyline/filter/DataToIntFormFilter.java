@@ -28,37 +28,39 @@ public class DataToIntFormFilter extends Filter<DataFilterTarget, IntDataFilterT
     protected boolean filtrate(Object initStorage, Object filtratedStorage) throws UnsupportedAudioFileException, IOException {
         WaveDataObject<Byte> wdo = (WaveDataObject<Byte>) initStorage;
         WaveDataObject<Integer> wdoi = (WaveDataObject<Integer>) filtratedStorage;
+        wdoi.audioFormat = wdo.audioFormat;
+        wdoi.framesCount = wdo.framesCount;
+        wdoi.sampleSize = wdo.sampleSize;
         Byte[] data = wdo.data;
-        Integer[] intData = wdoi.data;
         if (data != null) {
             if (wdo.audioFormat.getSampleSizeInBits() == 16) {
                 long nlengthInSamples = data.length / 2;
                 wdoi.dataLength = nlengthInSamples;
                 
-                intData = new Integer[(int) nlengthInSamples];
+                wdoi.data = new Integer[(int) nlengthInSamples];
                 if (wdo.audioFormat.isBigEndian()) {
                     for (int i = 0; i < nlengthInSamples; i++) {
                         int MSB = (int) data[2 * i];
                         int LSB = (int) data[2 * i + 1];
-                        intData[i] = MSB << 8 | (255 & LSB);
+                        wdoi.data[i] = MSB << 8 | (255 & LSB);
                     }
                 } else {
                     for (int i = 0; i < nlengthInSamples; i++) {
                         int LSB = (int) data[2 * i];
                         int MSB = (int) data[2 * i + 1];
-                        intData[i] = MSB << 8 | (255 & LSB);
+                        wdoi.data[i] = MSB << 8 | (255 & LSB);
                     }
                 }
             } else if (wdo.audioFormat.getSampleSizeInBits() == 8) {
                 int nlengthInSamples = data.length;
-                intData = new Integer[nlengthInSamples];
+                wdoi.data = new Integer[nlengthInSamples];
                 if (wdo.audioFormat.getEncoding().toString().startsWith("PCM_SIGN")) {
                     for (int i = 0; i < data.length; i++) {
-                        intData[i] = data[i].intValue();
+                        wdoi.data[i] = data[i].intValue();
                     }
                 } else {
                     for (int i = 0; i < data.length; i++) {
-                        intData[i] = data[i] - 128;
+                        wdoi.data[i] = data[i] - 128;
                     }
                 }
             }

@@ -14,6 +14,9 @@ import java.util.Stack;
 public class ReflectionUtils {
     
     public static Class getGenericParameterClass(final Class actualClass, final int parameterIndex){
+//        System.out.println("===============");
+//        System.out.println(((ParameterizedType) actualClass.getGenericSuperclass()).getActualTypeArguments()[parameterIndex]);
+//        System.out.println("===============");
         return (Class) ((ParameterizedType) actualClass.getGenericSuperclass()).getActualTypeArguments()[parameterIndex];
     }
 

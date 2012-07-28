@@ -86,7 +86,14 @@ public abstract class Filter<InitType extends FilterTarget, FiltratedType extend
 
     public final boolean process() throws Exception {
         int n = initType.getStorageLength();
+        int fn = filtratedData.getStorageLength();
+        if (n> fn) {
+            for (int i = 0; i < n - fn; i++) {
+                filtratedData.addArgument(filtratedData.getStorageType().newInstance());
+            }
+        }
         for (int i = 0; i < n; i++) {
+
             filtrate(initType.getStorage(i), filtratedData.getStorage(i));
         }
         filtrateAll(initType, filtratedData);

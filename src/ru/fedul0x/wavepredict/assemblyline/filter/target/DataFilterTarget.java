@@ -13,6 +13,7 @@ public class DataFilterTarget extends FilterTarget<WaveDataObject<Byte>> {
     public DataFilterTarget() {
     }
 //НИже муть
+
     public AudioFormat getAudioFormat() {
         return getCurrentStorage().audioFormat;
     }
@@ -51,5 +52,9 @@ public class DataFilterTarget extends FilterTarget<WaveDataObject<Byte>> {
 
     public void setSampleSize(int sampleSize) {
         getCurrentStorage().sampleSize = sampleSize;
+    }
+
+    public Class getStorageType() {
+        return WaveDataObject.class;
     }
 }
