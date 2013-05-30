@@ -74,7 +74,10 @@ public abstract class FilterTarget<DataStorage> {
         return dataStorages.size();
     }
 
-    public abstract Class getStorageType();
+    public Class getStorageType()
+    {
+        return ReflectionUtils.getGenericParameterClass(dataStorages.getClass(), 0);
+    }
 
     /////////=================bull shit
     public Boolean getFinished() {

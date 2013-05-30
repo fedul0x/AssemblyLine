@@ -9,7 +9,6 @@ public class FileNameFilterTarget extends FilterTarget<String> {
 
     public FileNameFilterTarget() {
     }
-    public Class getStorageType() {
-        return String.class;
-    }
+
+
 }

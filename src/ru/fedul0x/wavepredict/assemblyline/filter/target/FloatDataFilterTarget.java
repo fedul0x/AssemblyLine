@@ -14,11 +14,11 @@ public class FloatDataFilterTarget extends FilterTarget<WaveDataObject<Float>> {
     
     public void print()
     {
-        for (int i = 0; i < dataStorages.get(0).dataLength; i++) {
-            System.out.println(dataStorages.get(0).data[i]);
+        for (int i = 0; i < dataStorages.get(1).dataLength; i++) {
+            System.out.println(dataStorages.get(1).data[i]);
         }
     }
-
+//TODO Убрать в дальнейшем путем починки родительского метода
     @Override
     public Class getStorageType() {
         return WaveDataObject.class;

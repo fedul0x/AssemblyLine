@@ -56,7 +56,7 @@ public class IntDataFilterTarget extends FilterTarget<WaveDataObject<Integer>> {
         getCurrentStorage().sampleSize = sampleSize;
     }
     @Override
-        public Class getStorageType() {
+    public Class getStorageType() {
         return WaveDataObject.class;
     }
 }
