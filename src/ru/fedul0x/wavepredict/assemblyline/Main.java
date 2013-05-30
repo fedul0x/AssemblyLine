@@ -31,6 +31,5 @@ public class Main {
         conveyor.addFilter(openFilter).addFilter(waveToIntFilter).addFilter(correlationCoefficientFilter);
         FloatDataFilterTarget taget = (FloatDataFilterTarget) conveyor.start();
         taget.print();
-        
     }
 }
